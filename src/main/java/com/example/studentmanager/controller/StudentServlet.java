@@ -1,8 +1,8 @@
-package com.example.productmanager.controller;
+package com.example.studentmanager.controller;
 
-import com.example.productmanager.model.Product;
-import com.example.productmanager.service.ProductService;
-import com.example.productmanager.service.ProductServiceImpl;
+import com.example.studentmanager.model.Student;
+import com.example.studentmanager.service.StudentService;
+import com.example.studentmanager.service.StudentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", urlPatterns = "/products")
-public class ProductServlet extends HttpServlet {
-    private final ProductService productService = new ProductServiceImpl();
+@WebServlet(name = "StudentServlet", urlPatterns = "/students")
+public class StudentServlet extends HttpServlet {
+    private final StudentService studentService = new StudentServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,13 +38,13 @@ public class ProductServlet extends HttpServlet {
                 viewDetail(request, response);
                 break;
             default:
-                listProducts(request, response);
+                listStudents(request, response);
                 break;
         }
     }
 
     private void showCreatePage(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/create.jsp");
         try {
             dispatcher.forward(request, response);
         }
@@ -54,14 +54,14 @@ public class ProductServlet extends HttpServlet {
     }
     private void showUpdatePage(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = this.productService.searchById(id);
+        Student student = this.studentService.searchById(id);
         RequestDispatcher dispatcher;
-        if (product == null) {
+        if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
         }
         else {
-            request.setAttribute("product", product);
-            dispatcher = request.getRequestDispatcher("product/update.jsp");
+            request.setAttribute("student", student);
+            dispatcher = request.getRequestDispatcher("student/update.jsp");
         }
         try {
             dispatcher.forward(request, response);
@@ -72,13 +72,13 @@ public class ProductServlet extends HttpServlet {
     }
     private void showDeletePage(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = this.productService.searchById(id);
+        Student student = this.studentService.searchById(id);
         RequestDispatcher dispatcher;
-        if (product == null) {
+        if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
         } else {
-            request.setAttribute("product", product);
-            dispatcher = request.getRequestDispatcher("product/delete.jsp");
+            request.setAttribute("student", student);
+            dispatcher = request.getRequestDispatcher("student/delete.jsp");
         }
         try {
             dispatcher.forward(request, response);
@@ -88,13 +88,13 @@ public class ProductServlet extends HttpServlet {
     }
     private void viewDetail(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = this.productService.searchById(id);
+        Student student = this.studentService.searchById(id);
         RequestDispatcher dispatcher;
-        if (product == null) {
+        if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
         } else {
-            request.setAttribute("product", product);
-            dispatcher = request.getRequestDispatcher("product/view.jsp");
+            request.setAttribute("student", student);
+            dispatcher = request.getRequestDispatcher("student/view.jsp");
         }
         try {
             dispatcher.forward(request, response);
@@ -102,10 +102,10 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    private void listProducts(HttpServletRequest request, HttpServletResponse response) {
-        List<Product> products = this.productService.listProducts();
-        request.setAttribute("products", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product/list.jsp");
+    private void listStudents(HttpServletRequest request, HttpServletResponse response) {
+        List<Student> students = this.studentService.listStudents();
+        request.setAttribute("students", students);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/list.jsp");
         try {
             dispatcher.forward(request, response);
         }
@@ -125,29 +125,29 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createProduct(request, response);
+                createStudent(request, response);
                 break;
             case "update":
-                updateProduct(request, response);
+                updateStudent(request, response);
                 break;
             case "delete":
-                deleteProduct(request, response);
+                deleteStudent(request, response);
                 break;
             default:
                 break;
         }
     }
 
-    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+    private void createStudent(HttpServletRequest request, HttpServletResponse response) {
         int id = (int) (Math.random() * 100);
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
 
-        Product product = new Product(id, name, description, price);
-        this.productService.createProduct(product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
-        request.setAttribute("message",  "New customer was created");
+        Student student = new Student(id, name, description, price);
+        this.studentService.createStudent(student);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/create.jsp");
+        request.setAttribute("message",  "New student was created");
         try{
             dispatcher.forward(request, response);
         }
@@ -155,26 +155,26 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
+    private void updateStudent(HttpServletRequest request, HttpServletResponse response) {
         int id = (int) (Math.random() * 100);
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
 
-        Product product = new Product(id, name, description, price);
+        Student student = new Student(id, name, description, price);
         RequestDispatcher dispatcher;
 
-        if (product == null) {
+        if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
         }
         else {
-            product.setName(name);
-            product.setDescription(description);
-            product.setPrice(price);
-            this.productService.updateProduct(id, product);
-            request.setAttribute("product", product);
-            request.setAttribute("message", "Update product successfully");
-            dispatcher = request.getRequestDispatcher("product/update.jsp");
+            student.setName(name);
+            student.setDescription(description);
+            student.setPrice(price);
+            this.studentService.updateStudent(id, student);
+            request.setAttribute("student", student);
+            request.setAttribute("message", "Update student successfully");
+            dispatcher = request.getRequestDispatcher("student/update.jsp");
         }
         try{
             dispatcher.forward(request,response);
@@ -183,16 +183,16 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+    private void deleteStudent(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = this.productService.searchById(id);
+        Student student = this.studentService.searchById(id);
         RequestDispatcher dispatcher;
-        if (product == null) {
+        if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
         } else {
-            this.productService.deleteProduct(id);
+            this.studentService.deleteStudent(id);
             try {
-                response.sendRedirect("/products");
+                response.sendRedirect("/students");
             } catch (IOException e) {
                 e.printStackTrace();
             }

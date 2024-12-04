@@ -9,34 +9,34 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Edit product</h1>
+<h1>Edit student</h1>
 <p>
     <c:if test='${requestScope["message"] != null}'>
         <span class="message">${requestScope["message"]}</span>
     </c:if>
 </p>
 <p>
-    <a href="/products">Back to product list</a>
+    <a href="/students">Back to student list</a>
 </p>
 <form method="post">
     <fieldset>
-        <legend>Product information</legend>
+        <legend>Student information</legend>
         <table>
             <tr>
                 <td>Name: </td>
-                <td><input type="text" name="name" id="name" value="${requestScope["product"].getName()}"></td>
+                <td><input type="text" name="name" id="name" value="${requestScope["student"].getName()}"></td>
             </tr>
             <tr>
                 <td>Description: </td>
-                <td><input type="text" name="description" id="description" value="${requestScope["product"].getDescription()}"></td>
+                <td><input type="text" name="description" id="description" value="${requestScope["student"].getDescription()}"></td>
             </tr>
             <tr>
                 <td>Price: </td>
-                <td><input type="text" name="price" id="price" value="${requestScope["product"].getPrice()}"></td>
+                <td><input type="text" name="price" id="price" value="${requestScope["student"].getPrice()}"></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Update product"></td>
+                <td><input type="submit" value="Update student"></td>
             </tr>
         </table>
     </fieldset>

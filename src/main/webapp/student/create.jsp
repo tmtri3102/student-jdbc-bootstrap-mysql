@@ -9,18 +9,18 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Create new customer</h1>
+<h1>Create new student</h1>
 <p>
     <c:if test='${requestScope["message"] != null}'>
         <span class="message">${requestScope["message"]}</span>
     </c:if>
 </p>
 <p>
-    <a href="/products">Back to product list</a>
+    <a href="/students">Back to student list</a>
 </p>
 <form method="post">
     <fieldset>
-        <legend>Product information</legend>
+        <legend>Student information</legend>
         <table>
             <tr>
                 <td>Name:</td>
@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Create product"></td>
+                <td><input type="submit" value="Create student"></td>
             </tr>
         </table>
     </fieldset>

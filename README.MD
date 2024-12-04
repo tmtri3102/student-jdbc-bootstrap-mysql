@@ -1,6 +1,3 @@
-<p>0 - Setup</p>p>
-
-![img.png](img.png)
 
 1. Setup: Tomcat, Gradle, MVC, JSTL (build.gradle & <%taglib ...>)
 2. Model(s)

@@ -1,4 +1,4 @@
-package com.example.productmanager;
+package com.example.studentmanager;
 
 import java.io.*;
 import javax.servlet.http.*;

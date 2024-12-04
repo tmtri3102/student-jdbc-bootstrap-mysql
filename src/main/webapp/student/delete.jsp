@@ -18,23 +18,23 @@
   <h1>Delete?</h1>
   <form method="post">
     <fieldset>
-      <legend>Product information</legend>
+      <legend>Student information</legend>
       <table>
         <tr>
           <td>Name: </td>
-          <td>${requestScope["product"].getName()}</td>
+          <td>${requestScope["student"].getName()}</td>
         </tr>
         <tr>
           <td>Description: </td>
-          <td>${requestScope["product"].getDescription()}</td>
+          <td>${requestScope["student"].getDescription()}</td>
         </tr>
         <tr>
           <td>Price: </td>
-          <td>${requestScope["product"].getPrice()}</td>
+          <td>${requestScope["student"].getPrice()}</td>
         </tr>
         <tr>
-          <td><input type="submit" value="Delete product"></td>
-          <td><a href="/products">Back to product list</a></td>
+          <td><input type="submit" value="Delete student"></td>
+          <td><a href="/students">Back to student list</a></td>
         </tr>
       </table>
     </fieldset>

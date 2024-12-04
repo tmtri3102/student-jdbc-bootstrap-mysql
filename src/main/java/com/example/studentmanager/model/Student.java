@@ -1,15 +1,15 @@
-package com.example.productmanager.model;
+package com.example.studentmanager.model;
 
-public class Product {
+public class Student {
     private int id;
     private String name;
     private String description;
     private double price;
 
-    public Product() {
+    public Student() {
     }
 
-    public Product(int id, String name, String description, double price) {
+    public Student(int id, String name, String description, double price) {
         this.id = id;
         this.name = name;
         this.description = description;

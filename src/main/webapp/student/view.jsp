@@ -13,25 +13,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <title>View product details</title>
+    <title>View student details</title>
 </head>
 <body>
 <h1>View details</h1>
 <p>
-    <a href="/products">Back to product list</a>
+    <a href="/students">Back to student list</a>
 </p>
 <table>
     <tr>
         <td>Name:</td>
-        <td>${requestScope["product"].getName()}</td>
+        <td>${requestScope["student"].getName()}</td>
     </tr>
     <tr>
         <td>Description:</td>
-        <td>${requestScope["product"].getDescription()}</td>
+        <td>${requestScope["student"].getDescription()}</td>
     </tr>
     <tr>
         <td>Price:</td>
-        <td>${requestScope["product"].getPrice()}</td>
+        <td>${requestScope["student"].getPrice()}</td>
     </tr>
 </table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

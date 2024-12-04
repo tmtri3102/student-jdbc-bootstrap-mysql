@@ -13,11 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <title>Product List</title>
+    <title>Student List</title>
 </head>
 <body>
-<h1>All Products</h1>
-<a href="/products?action=create">Create a product</a>
+<h1>All Students</h1>
+<a href="/students?action=create">Create a student</a>
 <table>
     <tr>
         <td>ID</td>
@@ -27,14 +27,14 @@
         <td>Update</td>
         <td>Delete</td>
     </tr>
-    <c:forEach items='${requestScope["products"]}' var="product">
+    <c:forEach items='${requestScope["students"]}' var="student">
         <tr>
-            <td>${product.getId()}</td>
-            <td><a href="/products?action=view&id=${product.getId()}">${product.getName()}</a></td>
-            <td>${product.getDescription()}</td>
-            <td>${product.getPrice()}</td>
-            <td><button><a href="/products?action=update&id=${product.getId()}">Update</a></button></td>
-            <td><button><a href="/products?action=delete&id=${product.getId()}">Delete</a></button></td>
+            <td>${student.getId()}</td>
+            <td><a href="/students?action=view&id=${student.getId()}">${student.getName()}</a></td>
+            <td>${student.getDescription()}</td>
+            <td>${student.getPrice()}</td>
+            <td><button><a href="/students?action=update&id=${student.getId()}">Update</a></button></td>
+            <td><button><a href="/students?action=delete&id=${student.getId()}">Delete</a></button></td>
         </tr>
     </c:forEach>
 
