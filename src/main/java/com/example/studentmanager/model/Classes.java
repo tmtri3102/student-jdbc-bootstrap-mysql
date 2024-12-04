@@ -1,17 +1,12 @@
 package com.example.studentmanager.model;
 
-public class Student {
+public class Classes {
     private int id;
     private String name;
-    private int class_id;
 
-    public Student() {
-    }
-
-    public Student(int id, String name, int class_id) {
+    public Classes(int id, String name) {
         this.id = id;
         this.name = name;
-        this.class_id = class_id;
     }
 
     public int getId() {
@@ -28,14 +23,5 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public int getClassId() {
-        return class_id;
-    }
-
-    public void setClassId(int class_id) {
-        this.class_id = class_id;
     }
 }

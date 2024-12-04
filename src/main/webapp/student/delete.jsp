@@ -25,12 +25,8 @@
           <td>${requestScope["student"].getName()}</td>
         </tr>
         <tr>
-          <td>Description: </td>
-          <td>${requestScope["student"].getDescription()}</td>
-        </tr>
-        <tr>
-          <td>Price: </td>
-          <td>${requestScope["student"].getPrice()}</td>
+          <td>Class: </td>
+          <td>${requestScope["student"].getClassId()}</td>
         </tr>
         <tr>
           <td><input type="submit" value="Delete student"></td>

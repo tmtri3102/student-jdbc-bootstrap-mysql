@@ -1,5 +1,6 @@
 package com.example.studentmanager.controller;
 
+import com.example.studentmanager.DAO.StudentDAO;
 import com.example.studentmanager.model.Student;
 import com.example.studentmanager.service.StudentService;
 import com.example.studentmanager.service.StudentServiceImpl;
@@ -15,14 +16,14 @@ import java.util.List;
 
 @WebServlet(name = "StudentServlet", urlPatterns = "/students")
 public class StudentServlet extends HttpServlet {
-    private final StudentService studentService = new StudentServiceImpl();
+//    private final StudentService studentService = new StudentServiceImpl();
+    private final StudentDAO studentDAO = new StudentDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
-            // -> back to localhost?
         }
         switch (action) {
             case "create":
@@ -54,7 +55,8 @@ public class StudentServlet extends HttpServlet {
     }
     private void showUpdatePage(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Student student = this.studentService.searchById(id);
+//        Student student = this.studentService.searchById(id);
+        Student student = studentDAO.searchById(id);
         RequestDispatcher dispatcher;
         if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
@@ -72,7 +74,8 @@ public class StudentServlet extends HttpServlet {
     }
     private void showDeletePage(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Student student = this.studentService.searchById(id);
+//        Student student = this.studentService.searchById(id);
+        Student student = studentDAO.searchById(id);
         RequestDispatcher dispatcher;
         if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
@@ -88,7 +91,8 @@ public class StudentServlet extends HttpServlet {
     }
     private void viewDetail(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Student student = this.studentService.searchById(id);
+//        Student student = this.studentService.searchById(id);
+        Student student = studentDAO.searchById(id);
         RequestDispatcher dispatcher;
         if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
@@ -103,7 +107,8 @@ public class StudentServlet extends HttpServlet {
         }
     }
     private void listStudents(HttpServletRequest request, HttpServletResponse response) {
-        List<Student> students = this.studentService.listStudents();
+//        List<Student> students = this.studentService.listStudents();
+        List<Student> students = studentDAO.listStudents();
         request.setAttribute("students", students);
         RequestDispatcher dispatcher = request.getRequestDispatcher("student/list.jsp");
         try {
@@ -133,19 +138,22 @@ public class StudentServlet extends HttpServlet {
             case "delete":
                 deleteStudent(request, response);
                 break;
+            case "search":
+                searchStudent(request, response);
+                break;
             default:
                 break;
         }
     }
 
     private void createStudent(HttpServletRequest request, HttpServletResponse response) {
-        int id = (int) (Math.random() * 100);
+//        int id = (int) (Math.random() * 100);
         String name = request.getParameter("name");
-        String description = request.getParameter("description");
-        double price = Double.parseDouble(request.getParameter("price"));
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
 
-        Student student = new Student(id, name, description, price);
-        this.studentService.createStudent(student);
+//        Student student = new Student(name, class_id);
+//        this.studentService.createStudent(name, class_id);
+        studentDAO.createStudent(name, class_id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("student/create.jsp");
         request.setAttribute("message",  "New student was created");
         try{
@@ -156,12 +164,15 @@ public class StudentServlet extends HttpServlet {
         }
     }
     private void updateStudent(HttpServletRequest request, HttpServletResponse response) {
-        int id = (int) (Math.random() * 100);
+//        int id = (int) (Math.random() * 100);
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String description = request.getParameter("description");
-        double price = Double.parseDouble(request.getParameter("price"));
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
 
-        Student student = new Student(id, name, description, price);
+
+//        Student student = new Student(name, class_id);
+        Student student = studentDAO.searchById(id);
+
         RequestDispatcher dispatcher;
 
         if (student == null) {
@@ -169,9 +180,9 @@ public class StudentServlet extends HttpServlet {
         }
         else {
             student.setName(name);
-            student.setDescription(description);
-            student.setPrice(price);
-            this.studentService.updateStudent(id, student);
+            student.setClassId(class_id);
+            studentDAO.updateStudent(id, student);
+
             request.setAttribute("student", student);
             request.setAttribute("message", "Update student successfully");
             dispatcher = request.getRequestDispatcher("student/update.jsp");
@@ -185,17 +196,39 @@ public class StudentServlet extends HttpServlet {
     }
     private void deleteStudent(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Student student = this.studentService.searchById(id);
+        Student student = studentDAO.searchById(id);
         RequestDispatcher dispatcher;
         if (student == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
         } else {
-            this.studentService.deleteStudent(id);
+            studentDAO.deleteStudent(id);
             try {
                 response.sendRedirect("/students");
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void searchStudent(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("name");
+        List<Student> students = studentDAO.listStudents();
+        boolean found = false;
+        for (Student student : students) {
+            if (student.getName().equalsIgnoreCase(name)) {
+                request.setAttribute("student", student);
+                found = true;
+                break;
+            }
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/view.jsp");
+        if (!found) {
+            request.setAttribute("message", "Student not found!");
+        }
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

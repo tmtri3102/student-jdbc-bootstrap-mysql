@@ -16,14 +16,14 @@
     <title>Student List</title>
 </head>
 <body>
+<div class="container">
 <h1>All Students</h1>
 <a href="/students?action=create">Create a student</a>
-<table>
+<table  class="table-responsive table-bordered table-light table-striped table-hover">
     <tr>
         <td>ID</td>
         <td>Name</td>
-        <td>Description</td>
-        <td>Price</td>
+        <td>Class ID</td>
         <td>Update</td>
         <td>Delete</td>
     </tr>
@@ -31,14 +31,14 @@
         <tr>
             <td>${student.getId()}</td>
             <td><a href="/students?action=view&id=${student.getId()}">${student.getName()}</a></td>
-            <td>${student.getDescription()}</td>
-            <td>${student.getPrice()}</td>
+            <td>${student.getClassId()}</td>
             <td><button><a href="/students?action=update&id=${student.getId()}">Update</a></button></td>
             <td><button><a href="/students?action=delete&id=${student.getId()}">Delete</a></button></td>
         </tr>
     </c:forEach>
 
 </table>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

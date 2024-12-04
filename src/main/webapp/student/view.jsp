@@ -16,24 +16,24 @@
     <title>View student details</title>
 </head>
 <body>
-<h1>View details</h1>
-<p>
-    <a href="/students">Back to student list</a>
-</p>
-<table>
-    <tr>
-        <td>Name:</td>
-        <td>${requestScope["student"].getName()}</td>
-    </tr>
-    <tr>
-        <td>Description:</td>
-        <td>${requestScope["student"].getDescription()}</td>
-    </tr>
-    <tr>
-        <td>Price:</td>
-        <td>${requestScope["student"].getPrice()}</td>
-    </tr>
-</table>
+<div class="container">
+    <h1 class="text-primary text-center mb-4">Student Details</h1>
+    <p class="text-center">
+        <a href="/students" class="btn btn-success">Back to student list</a>
+    </p>
+    <div class="card p-4 col-md-12 col-lg-6 mx-auto">
+        <table class="table table-striped">
+            <tr>
+                <td>Name:</td>
+                <td>${requestScope["student"].getName()}</td>
+            </tr>
+            <tr>
+                <td>Class ID:</td>
+                <td>${requestScope["student"].getClassId()}</td>
+            </tr>
+        </table>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

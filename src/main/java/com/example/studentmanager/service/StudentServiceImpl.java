@@ -12,10 +12,10 @@ public class StudentServiceImpl implements StudentService {
 
     static {
         students = new HashMap<>();
-        students.put(1, new Student(1, "Macbook", "Nice laptop", 52.25));
-        students.put(2, new Student(2, "Yoga laptop", "Nice laptop", 34.50));
-        students.put(3, new Student(3, "LG Laptop", "Nice laptop", 45.65));
-        students.put(4, new Student(4, "Asus Vivobook", "Nice laptop", 56.75));
+        students.put(1, new Student(1, "Tri",  52));
+        students.put(2, new Student(2, "Loc ", 34));
+        students.put(3, new Student(3, "Dung ", 45));
+        students.put(4, new Student(4, "Thang ",56));
     }
 
     @Override
@@ -24,9 +24,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void createStudent(Student student) {
-        students.put(student.getId(), student);
+    public void createStudent(String name, int class_id) {
+
     }
+
+//    @Override
+//    public void createStudent(Student student) {
+//        students.put(student.getId(), student);
+//    }
 
     @Override
     public Student searchById(int id) {
