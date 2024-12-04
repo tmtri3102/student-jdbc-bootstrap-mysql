@@ -12,6 +12,10 @@ public class ProductServiceImpl implements ProductService {
 
     static {
         products = new HashMap<>();
+        products.put(1, new Product(1, "Macbook", "Nice laptop", 52.25));
+        products.put(2, new Product(2, "Yoga laptop", "Nice laptop", 34.50));
+        products.put(3, new Product(3, "LG Laptop", "Nice laptop", 45.65));
+        products.put(4, new Product(4, "Asus Vivobook", "Nice laptop", 56.75));
     }
 
     @Override
@@ -21,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void createProduct(Product product) {
-         products.put(product.getId(), product);
+        products.put(product.getId(), product);
     }
 
     @Override

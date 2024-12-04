@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Admin
   Date: 04/12/2024
-  Time: 11:50 SA
+  Time: 1:25 CH
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,31 +13,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <title>Product List</title>
+    <title>View product details</title>
 </head>
 <body>
-<h1>All Products</h1>
-<a href="/products?action=create">Create a product</a>
+<h1>View details</h1>
+<p>
+    <a href="/products">Back to product list</a>
+</p>
 <table>
     <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Price</td>
-        <td>Update</td>
-        <td>Delete</td>
+        <td>Name:</td>
+        <td>${requestScope["customer"].getName()}</td>
     </tr>
-    <c:forEach items='${requestScope["products"]}' var="product">
-        <tr>
-            <td>${product.getId()}</td>
-            <td><a href="/products?action=view&id=${product.getId()}">${product.getName()}</a></td>
-            <td>${product.getDescription()}</td>
-            <td>${product.getPrice()}</td>
-            <td><button>Update</button></td>
-            <td><button>Delete</button></td>
-        </tr>
-    </c:forEach>
-
+    <tr>
+        <td>Description:</td>
+        <td>${requestScope["customer"].getDescription()}</td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td>${requestScope["customer"].getPrice()}</td>
+    </tr>
 </table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
