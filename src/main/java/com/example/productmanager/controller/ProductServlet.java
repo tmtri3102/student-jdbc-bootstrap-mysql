@@ -17,8 +17,6 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     private final ProductService productService = new ProductServiceImpl();
 
-/////////////////////////////================   GET   ================/////////////////////////////
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -117,7 +115,7 @@ public class ProductServlet extends HttpServlet {
     }
 
 
-/////////////////////////////================   POST   ================/////////////////////////////
+//====================================================================================================================================================================================================================================================================================================================================================================
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

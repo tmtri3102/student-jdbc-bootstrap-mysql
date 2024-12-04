@@ -23,15 +23,15 @@
 <table>
     <tr>
         <td>Name:</td>
-        <td>${requestScope["customer"].getName()}</td>
+        <td>${requestScope["product"].getName()}</td>
     </tr>
     <tr>
         <td>Description:</td>
-        <td>${requestScope["customer"].getDescription()}</td>
+        <td>${requestScope["product"].getDescription()}</td>
     </tr>
     <tr>
         <td>Price:</td>
-        <td>${requestScope["customer"].getPrice()}</td>
+        <td>${requestScope["product"].getPrice()}</td>
     </tr>
 </table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

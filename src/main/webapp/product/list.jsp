@@ -33,8 +33,8 @@
             <td><a href="/products?action=view&id=${product.getId()}">${product.getName()}</a></td>
             <td>${product.getDescription()}</td>
             <td>${product.getPrice()}</td>
-            <td><button>Update</button></td>
-            <td><button>Delete</button></td>
+            <td><button><a href="/products?action=update&id=${product.getId()}">Update</a></button></td>
+            <td><button><a href="/products?action=delete&id=${product.getId()}">Delete</a></button></td>
         </tr>
     </c:forEach>
 

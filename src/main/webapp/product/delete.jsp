@@ -17,7 +17,6 @@
   <body>
   <h1>Delete?</h1>
   <form method="post">
-    <h3>Are you sure?</h3>
     <fieldset>
       <legend>Product information</legend>
       <table>
@@ -26,12 +25,12 @@
           <td>${requestScope["product"].getName()}</td>
         </tr>
         <tr>
-          <td>Email: </td>
-          <td>${requestScope["product"].getEmail()}</td>
+          <td>Description: </td>
+          <td>${requestScope["product"].getDescription()}</td>
         </tr>
         <tr>
-          <td>Address: </td>
-          <td>${requestScope["product"].getAddress()}</td>
+          <td>Price: </td>
+          <td>${requestScope["product"].getPrice()}</td>
         </tr>
         <tr>
           <td><input type="submit" value="Delete product"></td>
