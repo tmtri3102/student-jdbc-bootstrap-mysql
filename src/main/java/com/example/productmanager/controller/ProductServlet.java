@@ -47,7 +47,9 @@ public class ProductServlet extends HttpServlet {
     private void showUpdatePage(HttpServletRequest request, HttpServletResponse response) {}
     private void showDeletePage(HttpServletRequest request, HttpServletResponse response) {}
     private void readDetail(HttpServletRequest request, HttpServletResponse response) {}
-    private void listProducts(HttpServletRequest request, HttpServletResponse response) {}
+    private void listProducts(HttpServletRequest request, HttpServletResponse response) {
+
+    }
 //    ===============================   POST   =============================== //
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

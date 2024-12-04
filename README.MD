@@ -2,9 +2,8 @@
 
 ![img.png](img.png)
 
-- New project
-- Config Tomcat
-- Gradle
-- MVC folder
-- controller, model, service
-- 
+1. Setup: Tomcat, Gradle, MVC
+2. Model(s)
+3. Services: Interface & Class implements
+4. Controller/Servlet: call Service class, doGet for page routing, doPost for input submission (=> service methods)
+5. Servlet/List method
