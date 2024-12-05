@@ -9,34 +9,22 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Create new student</h1>
+<div class="container py-4">
+<h1 class="py-4">Create new student</h1>
 <p>
-    <c:if test='${requestScope["message"] != null}'>
-        <span class="message">${requestScope["message"]}</span>
-    </c:if>
+    <a class="btn btn-light" href="/students">Back to student list</a>
 </p>
-<p>
-    <a href="/students">Back to student list</a>
-</p>
-<form method="post">
-    <fieldset>
-        <legend>Student information</legend>
-        <table>
-            <tr>
-                <td>Name:</td>
-                <td><input type="text" name="name" id="name"></td>
-            </tr>
-            <tr>
-                <td>Class ID:</td>
-                <td><input type="number" name="class_id" id="class_id"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Create student"></td>
-            </tr>
-        </table>
-    </fieldset>
+<form method="post" class="d-flex flex-column gap-3" style="max-width: 300px">
+    <input class="form-control" type="text" name="name" id="name" placeholder="Enter Name">
+    <input class="form-control" type="number" name="class_id" id="class_id" placeholder="Enter Class ID">
+    <p>
+        <c:if test='${requestScope["message"] != null}'>
+            <span class="message">${requestScope["message"]}</span>
+        </c:if>
+    </p>
+    <input class="btn btn-outline-primary btn-sm" type="submit" value="Create student">
 </form>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

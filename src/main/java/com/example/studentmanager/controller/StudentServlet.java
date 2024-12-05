@@ -2,6 +2,7 @@ package com.example.studentmanager.controller;
 
 import com.example.studentmanager.DAO.StudentDAO;
 import com.example.studentmanager.model.Student;
+import com.example.studentmanager.model.Classes;
 import com.example.studentmanager.service.StudentService;
 import com.example.studentmanager.service.StudentServiceImpl;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "StudentServlet", urlPatterns = "/students")
@@ -110,6 +112,8 @@ public class StudentServlet extends HttpServlet {
 //        List<Student> students = this.studentService.listStudents();
         List<Student> students = studentDAO.listStudents();
         request.setAttribute("students", students);
+        List<Classes> classes = studentDAO.listClasses();
+        request.setAttribute("classes", classes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("student/list.jsp");
         try {
             dispatcher.forward(request, response);
@@ -209,19 +213,23 @@ public class StudentServlet extends HttpServlet {
             }
         }
     }
-
     private void searchStudent(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         List<Student> students = studentDAO.listStudents();
+        List<Classes> classes = studentDAO.listClasses();
+        List<Student> searchStudents = new ArrayList<>();
+
         boolean found = false;
         for (Student student : students) {
             if (student.getName().equalsIgnoreCase(name)) {
-                request.setAttribute("student", student);
+                searchStudents.add(student);
                 found = true;
                 break;
             }
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("student/view.jsp");
+        request.setAttribute("students", searchStudents);
+        request.setAttribute("classes", classes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/list.jsp");
         if (!found) {
             request.setAttribute("message", "Student not found!");
         }

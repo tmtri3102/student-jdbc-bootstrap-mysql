@@ -48,7 +48,7 @@ public class StudentDAO implements StudentService {
     public void createStudent(String name, int class_id) {
         try (
                 Connection conn = getConnection();
-                CallableStatement call = conn.prepareCall("{call add_student(?,?,?)}")
+                CallableStatement call = conn.prepareCall("{call add_student(?,?)}")
         ) {
             call.setString(1, name);
             call.setInt(2, class_id);
@@ -86,7 +86,7 @@ public class StudentDAO implements StudentService {
     public void updateStudent(int id, Student student) {
         try (
                 Connection conn = getConnection();
-                CallableStatement call = conn.prepareCall("{call update_student(?,?,?,?)}")
+                CallableStatement call = conn.prepareCall("{call update_student(?,?,?)}")
         ) {
             call.setInt(1, id);
             call.setString(2, student.getName());
@@ -116,13 +116,13 @@ public class StudentDAO implements StudentService {
         }
     }
 
-    public List<Classes> getAllClasses() {
+    public List<Classes> listClasses() {
         List<Classes> classes_list = new ArrayList<>();
         try (
                 Connection conn = getConnection();
-                CallableStatement cstmt = conn.prepareCall("{call list_classes()}")
+                CallableStatement call = conn.prepareCall("{call list_classes()}")
         ) {
-            ResultSet rs = cstmt.executeQuery();
+            ResultSet rs = call.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");

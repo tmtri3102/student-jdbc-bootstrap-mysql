@@ -15,26 +15,25 @@
     <title>Delete</title>
   </head>
   <body>
-  <h1>Delete?</h1>
-  <form method="post">
-    <fieldset>
-      <legend>Student information</legend>
-      <table>
-        <tr>
-          <td>Name: </td>
-          <td>${requestScope["student"].getName()}</td>
-        </tr>
-        <tr>
-          <td>Class: </td>
-          <td>${requestScope["student"].getClassId()}</td>
-        </tr>
-        <tr>
-          <td><input type="submit" value="Delete student"></td>
-          <td><a href="/students">Back to student list</a></td>
-        </tr>
-      </table>
-    </fieldset>
+  <div class="container py-4">
+    <h1 class="py-4">Delete this student?</h1><p>
+    <a class="btn btn-light" href="/students">Back to student list</a>
+    <form method="post" class="d-flex flex-column gap-3" style="max-width: 300px">
+    <table class="table table-bordered table-hover">
+      <tr>
+        <td>Name</td>
+        <td>Class ID</td>
+      </tr>
+      <tr>
+        <td>${requestScope["student"].getName()}</td>
+        <td>${requestScope["student"].getClassId()}</td>
+      </tr>
+    </table>
+    <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
   </form>
+
+
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
           crossorigin="anonymous"></script>

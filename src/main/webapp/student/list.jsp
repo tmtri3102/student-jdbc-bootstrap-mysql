@@ -16,32 +16,53 @@
     <title>Student List</title>
 </head>
 <body>
-<div class="container">
-<h1>All Students</h1>
-<a href="/students?action=create">Create a student</a>
-<table  class="table-responsive table-bordered table-light table-striped table-hover">
-    <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Class ID</td>
-        <td>Update</td>
-        <td>Delete</td>
-    </tr>
-    <c:forEach items='${requestScope["students"]}' var="student">
+<div class="container py-4">
+    <h1 class="py-4">All Students</h1>
+    <form action="/students" method="post" class="d-flex pb-4">
+        <input type="hidden" name="action" value="search">
+        <input type="text" name="name" class="form-control me-2" placeholder="Search student">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <table class="table table-bordered">
         <tr>
-            <td>${student.getId()}</td>
-            <td><a href="/students?action=view&id=${student.getId()}">${student.getName()}</a></td>
-            <td>${student.getClassId()}</td>
-            <td><button><a href="/students?action=update&id=${student.getId()}">Update</a></button></td>
-            <td><button><a href="/students?action=delete&id=${student.getId()}">Delete</a></button></td>
+            <td>Class ID</td>
+            <td>Class Name</td>
+<%--            <td colspan="2">Actions</td>--%>
         </tr>
-    </c:forEach>
+        <c:forEach items='${requestScope["classes"]}' var="clazz">
+            <tr>
+                <td>${clazz.getId()}</td>
+                <td>${clazz.getName()}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
-</table>
+    <br>
+
+    <table class="table table-bordered">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Class ID</td>
+            <td colspan="2">Actions</td>
+        </tr>
+        <c:forEach items='${requestScope["students"]}' var="student">
+            <tr>
+                <td>${student.getId()}</td>
+                <td><a class="text-black text-decoration-none" href="/students?action=view&id=${student.getId()}">${student.getName()}</a></td>
+                <td><a class="text-black text-decoration-none" href="/students?action=view&id=${student.getId()}">${student.getClassId()}</a></td>
+                <td><a class="text-primary text-decoration-none"  href="/students?action=update&id=${student.getId()}">Update</a></td>
+                <td><a class="text-danger text-decoration-none"  href="/students?action=delete&id=${student.getId()}">Delete</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+
+    <p>
+        <a class="btn btn-primary text-white" href="/students?action=create">Add a student</a>
+    </p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
 </body>
 </html>
