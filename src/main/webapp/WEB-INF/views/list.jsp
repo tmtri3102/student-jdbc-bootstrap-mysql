@@ -16,13 +16,38 @@
     <title>Student List</title>
 </head>
 <body>
+<%--<p>There are ${students.size()} customers in list</p>--%>
+<%--<h3>Customer List</h3>--%>
+<%--<table>--%>
+<%--    <tr>--%>
+<%--        <th>Id</th>--%>
+<%--        <th>Name</th>--%>
+<%--        <th>Class ID</th>--%>
+<%--    </tr>--%>
+<%--    <c:forEach var="s" items="${students}">--%>
+<%--        <tr>--%>
+<%--            <td><a href="/students/${s.id}">${s.id}</a></td>--%>
+<%--            <td>${s.name}</td>--%>
+<%--            <td>${s.classId}</td>--%>
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
+<%--</table>--%>
+
+
+
 <div class="container py-4">
-    <h1 class="py-4">All Students</h1>
+    <h1 class="py-4">All ${students.size()} Students</h1>
     <form action="/students" method="post" class="d-flex pb-4">
         <input type="hidden" name="action" value="search">
         <input type="text" name="name" class="form-control me-2" placeholder="Search student">
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
+    <p>
+        <c:if test='${message != null}'>
+    <%--        <span class="message">${requestScope["message"]}</span>--%>
+            <a class="btn btn-light" href="/students">Back to student list</a>
+        </c:if>
+    </p>
     <table class="table table-bordered">
         <tr>
             <td>Class ID</td>
@@ -46,11 +71,11 @@
             <td>Class ID</td>
             <td colspan="2">Actions</td>
         </tr>
-        <c:forEach items='${requestScope["students"]}' var="student">
+        <c:forEach items='${students}' var="student">
             <tr>
                 <td>${student.getId()}</td>
                 <td><a class="text-black text-decoration-none" href="/students?action=view&id=${student.getId()}">${student.getName()}</a></td>
-                <td><a class="text-black text-decoration-none" href="/students?action=view&id=${student.getId()}">${student.getClassId()}</a></td>
+                <td><a class="text-black text-decoration-none" href="/students?action=view&id=${clazz.getId()}">${student.getClassId()}</a></td>
                 <td><a class="text-primary text-decoration-none"  href="/students?action=update&id=${student.getId()}">Update</a></td>
                 <td><a class="text-danger text-decoration-none"  href="/students?action=delete&id=${student.getId()}">Delete</a></td>
             </tr>
